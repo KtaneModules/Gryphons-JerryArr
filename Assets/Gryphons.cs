@@ -192,7 +192,7 @@ public class Gryphons : MonoBehaviour
         if (gryphNames[pickedName].Length < 6)
         {
             getCharB = Bomb.GetSerialNumber().Substring(1, 1);
-            Debug.LogFormat("[Gryphons #{0}] The name has a length that's less than six letters, so using the second SN character, which is {2}.", _moduleId, gryphNames[pickedName], getCharB);
+            Debug.LogFormat("[Gryphons #{0}] The name has a length that's shorter than six letters, so using the second SN character, which is {2}.", _moduleId, gryphNames[pickedName], getCharB);
         }
         else if (gryphNames[pickedName].Where(x => "z".Contains(x)).Count() != 0 || gryphNames[pickedName].Where(x => "u".Contains(x)).Count() != 0)
         {
@@ -302,7 +302,6 @@ public class Gryphons : MonoBehaviour
 
         string theError;
         theError = "";
-        yield return null;
         if (piecesRaw.Count() == 0)
         {
             theError = "sendtochaterror No arguments! You need to use submit/s, then a bird type, a cat type, and an accessory (submit bird cat accessory)";
@@ -432,84 +431,6 @@ public class Gryphons : MonoBehaviour
                 submit.OnInteract();
             }
         }
-
-		/*
-        else if (pieces.Count() >= 1 && pieces[0] == "colorblind")
-        {
-            colorblindModeEnabled = true;
-            colorblindLabel.GetComponentInChildren<TextMesh>().text = colorNames[colorNumber];
-            yield return null;
-        }
-        else if (pieces.Count() == 1 && (pieces[0] == "tap" || pieces[0] == "t" || pieces[0] == "hold" || pieces[0] == "h" || pieces[0] == "release" || pieces[0] == "r"))
-        {
-            theError = "sendtochaterror Not enough arguments! You need to specify a digit the number of seconds remaining ends in, using !{0} tap/t/hold/h/release/r (1-9).";
-            yield return theError;
-
-        }
-        else if (pieces.Count() == 1 && !(pieces[0] == "tap" || pieces[0] == "t" || pieces[0] == "hold" || pieces[0] == "h" || pieces[0] == "release" || pieces[0] == "r"))
-        {
-            theError = "sendtochaterror Invalid argument: " + pieces[0] + "! You need to specify a digit the number of seconds remaining ends in, using !{0} tap/t/hold/h/release/r (1-9).";
-            yield return theError;
-
-        }
-        else if (pieces.Count() > 1 && !(pieces[0] == "tap" || pieces[0] == "t" || pieces[0] == "hold" || pieces[0] == "h" || pieces[0] == "release" || pieces[0] == "r"))
-        {
-            theError = "sendtochaterror Invalid argument: " + pieces[0] + "! You need to specify a digit the number of seconds remaining ends in, using !{0} tap/t/hold/h/release/r (1-9).";
-            yield return theError;
-
-        }
-        else if (pieces.Count() > 1 && !(pieces[1] == "1" || pieces[1] == "2" || pieces[1] == "3" ||
-                                        pieces[1] == "6" || pieces[1] == "5" || pieces[1] == "6" ||
-                                        pieces[1] == "7" || pieces[1] == "8" || pieces[1] == "9"))
-        {
-            theError = "sendtochaterror Invalid argument: " + pieces[1] + " is not a digit from 1 to 9! You need to specify a digit the number of seconds remaining ends in, using !{0} tap/t/hold/h/release/r (1-9).";
-            yield return theError;
-        }
-        else if (pieces[0] == "tap" || pieces[0] == "t")
-        {
-            yield return null;
-            holdWait = Int16.Parse(pieces[1]);
-            releaseWait = Int16.Parse(pieces[1]);
-            if (actionNeeded != 0 || holdWait != neededNumber)
-            {
-                yield return "strike";
-            }
-            else
-            {
-                yield return "solve";
-            }
-        }
-        else if (pieces[0] == "hold" || pieces[0] == "h")
-        {
-            yield return null;
-            holdWait = Int16.Parse(pieces[1]);
-            releaseWait = 0;
-            if (actionNeeded != 1 || holdWait != neededNumber)
-            {
-                yield return "strike";
-            }
-            else
-            {
-                yield return "solve";
-            }
-            //           yield return theError;
-        }
-        else if (pieces[0] == "release" || pieces[0] == "r")
-        {
-            yield return null;
-            holdWait = 0;
-            releaseWait = Int16.Parse(pieces[1]);
-            if (actionNeeded != 2 || releaseWait != neededNumber)
-            {
-                yield return "strike";
-            }
-            else
-            {
-                yield return "solve";
-            }
-            //            yield return theError;
-        }
-		*/
      }
 
     void CatGoUp()
