@@ -1681,7 +1681,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5e1360ea307511642ac30502ed8582bc, type: 2}
+  - {fileID: 2100000, guid: 55fdea60fe372824392e1e4db0f79a50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2648,17 +2648,17 @@ MonoBehaviour:
   birdImages:
   - {fileID: 2800000, guid: e359a8c1731136743a9179cb097849f2, type: 3}
   - {fileID: 2800000, guid: 0e6a748c24d0b2d478e65fbe70d47cd7, type: 3}
-  - {fileID: 2800000, guid: 467828fc52e5ab54eb45da3bcd2b72ca, type: 3}
+  - {fileID: 2800000, guid: 4639073dee783034dbf66f26c411a2bc, type: 3}
   - {fileID: 2800000, guid: 362970ac7600ece48bb7b19c0d07ce4d, type: 3}
   - {fileID: 2800000, guid: 0a2c3bc0cf59efb4b9fdb8dbdad8b4ac, type: 3}
   - {fileID: 2800000, guid: 739305abe84546f4590e658c606d4982, type: 3}
   catImages:
-  - {fileID: 2800000, guid: d25e87c84311753479efb480c938f510, type: 3}
-  - {fileID: 2800000, guid: de048c9cb61f9ef42860eb10c2b57012, type: 3}
-  - {fileID: 2800000, guid: 43f1d7763eb320346a4995e411d724b7, type: 3}
-  - {fileID: 2800000, guid: 280377e6580295e4285da694a536ca6c, type: 3}
-  - {fileID: 2800000, guid: 81d64bd7a5f36ed44aa87886b7ee2c6c, type: 3}
-  - {fileID: 2800000, guid: 1669e045e4b10654c86d3be5bbc4d60a, type: 3}
+  - {fileID: 2800000, guid: f4996fd70cd1f144ab9ddad713bb26d3, type: 3}
+  - {fileID: 2800000, guid: 71e2ad70863a8174e9240c74896f6b34, type: 3}
+  - {fileID: 2800000, guid: 581b3e12c872a1445a8b8500716bd1fd, type: 3}
+  - {fileID: 2800000, guid: 08c062f515589ba4e8ba013ea5558523, type: 3}
+  - {fileID: 2800000, guid: 575954f25639d9f4080f884547d06859, type: 3}
+  - {fileID: 2800000, guid: 0608e778e817e824e8be437e8873df6a, type: 3}
   accessoryImages:
   - {fileID: 2800000, guid: ce9666cd5c5745b4c8b325a84b0d6964, type: 3}
   - {fileID: 2800000, guid: 40ae3b58e1d46864fa320382f84afefa, type: 3}

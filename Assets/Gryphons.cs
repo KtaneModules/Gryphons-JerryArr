@@ -114,6 +114,9 @@ public class Gryphons : MonoBehaviour
 
     int tableColumn = 0;
     int tableRow = 0;
+	
+	string theirName;
+	bool thereIsASouvenirSoNoCheating;
 
     bool isSolved = false;
     bool tpActive = false;
@@ -136,6 +139,7 @@ public class Gryphons : MonoBehaviour
         currentAccessory = UnityEngine.Random.Range(0, 6);
         accessoryPart.material.mainTexture = accessoryImages[currentAccessory];
         pickedName = UnityEngine.Random.Range(0, gryphNames.Count());
+		theirName = gryphNames[pickedName];
         age = UnityEngine.Random.Range(23, 35);
         IDBox.GetComponentInChildren<TextMesh>().text = gryphNames[pickedName] + " (" + age + ")";
         typeBox.GetComponentInChildren<TextMesh>().text = birds[currentBird] + "/" + cats[currentCat];
@@ -298,10 +302,17 @@ public class Gryphons : MonoBehaviour
         tpActive = true;
         var piecesRaw = command.ToLowerInvariant().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         var pieces = new string[] { "bad", "bad", "bad", "bad" };
-        
-
+		/*
+		var testingString = "";
+		for (int tsn = 0; tsn < piecesRaw.Count(); tsn++)
+		{
+			testingString = testingString + piecesRaw[tsn] + " ";
+		}
+		Debug.LogFormat("Raw input was >>> " + testingString + " <<< which I hope makes sense"); */
+            
         string theError;
         theError = "";
+        yield return null;
         if (piecesRaw.Count() == 0)
         {
             theError = "sendtochaterror No arguments! You need to use submit/s, then a bird type, a cat type, and an accessory (submit bird cat accessory)";
@@ -325,9 +336,10 @@ public class Gryphons : MonoBehaviour
             }
             if ((piecesRaw[2] == "house" && piecesRaw[3] == "cat") || (piecesRaw[3] == "house" && piecesRaw[4] == "cat") || piecesRaw[2] == "housecat" || piecesRaw[3] == "housecat")
             {
+				Debug.LogFormat("bingo");
                 pieces[2] = "hc";
             }
-            if ((piecesRaw[2] == "snow" && piecesRaw[3] == "leopard") || (piecesRaw[3] == "snow" && piecesRaw[4] == "leopard") || piecesRaw[2] == "snowleopard" || piecesRaw[3] == "snowleopard")
+            else if ((piecesRaw[2] == "snow" && piecesRaw[3] == "leopard") || (piecesRaw[3] == "snow" && piecesRaw[4] == "leopard") || piecesRaw[2] == "snowleopard" || piecesRaw[3] == "snowleopard")
             {
                 pieces[2] = "sl";
             }
@@ -345,7 +357,7 @@ public class Gryphons : MonoBehaviour
                 }
             }
             pieces[3] = piecesRaw[piecesRaw.Count() - 1];
-            Debug.LogFormat("You entered >>> " + pieces[0] + " " + pieces[1] + " " + pieces[2] + " " + pieces[3] + " <<< which I hope makes sense");
+            //Debug.LogFormat("You entered >>> " + pieces[0] + " " + pieces[1] + " " + pieces[2] + " " + pieces[3] + " <<< which I hope makes sense");
             if (pieces.Count() < 4)
             {
                 theError = "sendtochaterror Not enough arguments! You need to use submit/s, then a bird type, a cat type, and an accessory (submit bird cat accessory)";
@@ -470,7 +482,10 @@ public class Gryphons : MonoBehaviour
         currentAccessory++;
         currentAccessory = currentAccessory % 6;
         accessoryPart.material.mainTexture = accessoryImages[currentAccessory];
-        accessoryBox.GetComponentInChildren<TextMesh>().text = accessories[currentAccessory];
+		if (!thereIsASouvenirSoNoCheating)
+		{
+			accessoryBox.GetComponentInChildren<TextMesh>().text = accessories[currentAccessory];
+		}
     }
 
 
@@ -479,7 +494,10 @@ public class Gryphons : MonoBehaviour
         currentAccessory = currentAccessory + 5;
         currentAccessory = currentAccessory % 6;
         accessoryPart.material.mainTexture = accessoryImages[currentAccessory];
-        accessoryBox.GetComponentInChildren<TextMesh>().text = accessories[currentAccessory];
+		if (!thereIsASouvenirSoNoCheating)
+		{
+			accessoryBox.GetComponentInChildren<TextMesh>().text = accessories[currentAccessory];
+		}
     }
 
 
@@ -496,7 +514,7 @@ public class Gryphons : MonoBehaviour
             else if (currentBird != correctBird || currentCat != correctCat)
             {
                 Debug.LogFormat("[Gryphons #{0}] {5}'s types are {1}/{2} when we expected {3}/{4}, this is incorrect. Strike given.", 
-                    _moduleId, birds[currentBird], cats[currentCat], birds[correctBird], cats[correctBird], gryphNames[pickedName]);
+                    _moduleId, birds[currentBird], cats[currentCat], birds[correctBird], cats[correctCat], gryphNames[pickedName]);
                 Module.HandleStrike();
             }
             else
@@ -505,6 +523,19 @@ public class Gryphons : MonoBehaviour
                     _moduleId, accessories[currentAccessory], birds[currentBird], cats[currentCat], gryphNames[pickedName]);
                 pressedAllowed = false;
                 isSolved = true;
+				if (Bomb.GetSolvableModuleNames().Where(x => "Souvenir".Contains(x)).Count() > 0)
+				{
+					IDBox.GetComponentInChildren<TextMesh>().text = "Out for a fly!";
+					thereIsASouvenirSoNoCheating = true;
+					typeBox.GetComponentInChildren<TextMesh>().text = "";
+					accessoryBox.GetComponentInChildren<TextMesh>().text = "";
+					accessoryPart.enabled = false;
+					birdPart.enabled = false;
+					catPart.enabled = false;
+					accessoryBox.enabled = false;
+					typeBox.enabled = false;
+				}
+				
                 Module.HandlePass();
             }
         }
@@ -513,7 +544,10 @@ public class Gryphons : MonoBehaviour
     void refreshType()
     {
 
-        typeBox.GetComponentInChildren<TextMesh>().text = birds[currentBird] + "/" + cats[currentCat];
+		if (!thereIsASouvenirSoNoCheating)
+		{
+			typeBox.GetComponentInChildren<TextMesh>().text = birds[currentBird] + "/" + cats[currentCat];
+		}
     }
 
     void delegationZone()
