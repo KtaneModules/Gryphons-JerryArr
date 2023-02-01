@@ -576,6 +576,24 @@ public class Gryphons : MonoBehaviour
         submit.OnInteractEnded += delegate () { OnRelease(); };
     }
 
-    
-
+    private IEnumerator TwitchHandleForcedSolve()
+    {
+        while (birds[currentBird] != birds[correctBird])
+        {
+            birdUp.OnInteract();
+            yield return new WaitForSeconds(0.1f);
+        }
+        while (cats[currentCat] != cats[correctCat])
+        {
+            catUp.OnInteract();
+            yield return new WaitForSeconds(0.1f);
+        }
+        while (accessories[currentAccessory] != accessories[correctAccessory])
+        {
+            accessoryRight.OnInteract();
+            yield return new WaitForSeconds(0.1f);
+        }
+        submit.OnInteract();
+        yield break;
+    }
 }
