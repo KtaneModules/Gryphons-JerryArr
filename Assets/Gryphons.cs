@@ -31,9 +31,9 @@ public class Gryphons : MonoBehaviour
 
     public KMSelectable submit;
 
-    //public MeshRenderer display;
+    public MeshRenderer display;
         
-    //public KMSelectable button;
+    public KMSelectable button;
 
     public MeshRenderer birdPart;
     public MeshRenderer catPart;

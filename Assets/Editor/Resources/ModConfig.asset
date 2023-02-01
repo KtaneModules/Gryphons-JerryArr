@@ -13,13 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: gryphons
   title: Gryphons
-  description: 'Gryphons v1.04
+  description: 'Gryphons v1.05
 
     Gryphons are majestic, powerful, and cuddly. This one has an explosive taste in
     fashion.
 
 
     Manual available here: https://ktane.timwi.de/HTML/Gryphons.html'
-  version: 1.04
+  version: 1.05
   outputFolder: build
   previewImage: {fileID: 2800000, guid: d79b6540f6531ac4ca5e6469cc6896a7, type: 3}
